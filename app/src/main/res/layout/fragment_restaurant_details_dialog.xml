@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="details"
+            type="com.niroshan.whimmobileappassignment.model.data.entities.NearByPlacesDetails" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottom_sheet_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:behavior_hideable="true"
+        app:behavior_peekHeight="150dp"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+        
+        <View
+            android:layout_width="match_parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@color/colorPrimary"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_height="4dp"/>
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_marginTop="13dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:drawablePadding="16dp"
+            android:padding="12dp"
+            android:text="@{details.name}"
+            android:textColor="@android:color/black"
+            android:textSize="22sp"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/separator01"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="20dp"
+            android:visibility='@{details.formattedPhoneNumber == null ? View.GONE : View.VISIBLE}'
+            android:background="@color/divider"
+            app:layout_constraintTop_toBottomOf="@+id/title" />
+
+        <TextView
+            android:id="@+id/callTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="20dp"
+            android:autoLink="phone"
+            android:clickable="true"
+            android:visibility='@{details.formattedPhoneNumber == null ? View.GONE : View.VISIBLE}'
+            android:drawableStart="@drawable/ic_local_phone_black_18dp"
+            android:drawableLeft="@drawable/ic_local_phone_black_18dp"
+            android:drawableTint="@android:color/holo_green_dark"
+            android:drawablePadding="8dp"
+            android:focusable="true"
+            android:gravity="start"
+            android:text="@{details.formattedPhoneNumber}"
+            android:textAlignment="center"
+            android:textColor="@color/primaryText"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/separator01"
+            tools:ignore="RtlCompat" />
+
+        <View
+            android:id="@+id/separator02"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="20dp"
+            android:visibility='@{details.formattedAddress == null ? View.GONE : View.VISIBLE}'
+            android:background="@color/divider"
+            app:layout_constraintTop_toBottomOf="@+id/callTextView" />
+
+        <TextView
+            android:id="@+id/addressTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:autoLink="web"
+            android:drawableStart="@drawable/ic_baseline_business_24"
+            android:drawableLeft="@drawable/ic_baseline_business_24"
+            android:drawableTint="@android:color/holo_purple"
+            android:drawablePadding="8dp"
+            android:visibility='@{details.formattedAddress == null ? View.GONE : View.VISIBLE}'
+            android:gravity="start"
+            android:text="@{details.formattedAddress}"
+            android:textAlignment="textStart"
+            android:textColor="@color/primaryText"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/separator02"
+            tools:ignore="RtlCompat" />
+
+        <View
+            android:id="@+id/separator03"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="20dp"
+            android:visibility='@{details.website == null ? View.GONE : View.VISIBLE}'
+            android:background="@color/divider"
+            app:layout_constraintTop_toBottomOf="@+id/addressTextView" />
+
+        <TextView
+            android:id="@+id/webLinkTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
+            android:paddingBottom="10dp"
+            android:autoLink="web"
+            android:drawableStart="@drawable/ic_launch_24px"
+            android:drawableLeft="@drawable/ic_launch_24px"
+            android:drawableTint="@android:color/holo_blue_dark"
+            android:visibility='@{details.website == null ? View.GONE : View.VISIBLE}'
+            android:drawablePadding="8dp"
+            android:gravity="start"
+            android:text="@{details.website}"
+            android:textAlignment="center"
+            android:textColor="@color/primaryText"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/separator03"
+            tools:ignore="RtlCompat" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
