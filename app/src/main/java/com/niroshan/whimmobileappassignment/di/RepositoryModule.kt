@@ -26,6 +26,6 @@ class RepositoryModule {
     @Named("secret_key")
     @Singleton
     @Provides
-    fun provideSecretKey() = "AIzaSyCed_ACs7FR_h_LOwAo3AWtWfqRurQm9Pg"
+    fun provideSecretKey() = "API-KEY"
 
 }
